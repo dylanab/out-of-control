@@ -19,6 +19,8 @@ public class GameManager : Singleton<GameManager>
 
     // ----- Events -----
     public System.Action<Phase> phaseChanged; // Called when... the phase changes
+    public System.Action<Guest> guestKilled;
+    public System.Action<TargetType> beginTargeting; // Called when the user clicks a card to begin targeting
 
     void Start()
     {
@@ -33,6 +35,12 @@ public class GameManager : Singleton<GameManager>
     }
 
     #region Public Interface
+    public void BeginTargeting(Card c) {
+        if (beginTargeting != null) {
+            beginTargeting(c.targetType);
+        }
+    }
+
     // Called when the plater uses a card on a target
     public void UseCard(Card c, GameObject target = null) {
         // TODO: Based on the target type and the card, resolve the card
@@ -52,7 +60,6 @@ public class GameManager : Singleton<GameManager>
 
     #region Private Helpers
     private void initialize() {
-        this.deck = new CardDeck();
         this.deck.GetNewHand();
     }
     #endregion Private Helpers

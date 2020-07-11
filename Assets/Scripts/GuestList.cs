@@ -7,10 +7,10 @@ public class GuestList : MonoBehaviour
     public List<Trait> traits;
     public List<Guest> guests;
 
-    public GuestList() {
-        Initialize();
+    void Awake() {
+        this.Initialize();
     }
-
+    
     #region Public interface
     public void Initialize() {
         // Shuffle the trait list and guest list
