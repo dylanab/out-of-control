@@ -130,9 +130,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 165528883}
+  - component: {fileID: 165528884}
   - component: {fileID: 165528882}
+  - component: {fileID: 165528885}
   m_Layer: 0
-  m_Name: CardManager
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -153,15 +155,35 @@ MonoBehaviour:
   discard: []
   cards:
   - id: 0
+    name: 
+    description: 
   - id: 1
+    name: 
+    description: 
   - id: 2
+    name: 
+    description: 
   - id: 3
+    name: 
+    description: 
   - id: 4
+    name: 
+    description: 
   - id: 5
+    name: 
+    description: 
   - id: 6
+    name: 
+    description: 
   - id: 7
+    name: 
+    description: 
   - id: 8
+    name: 
+    description: 
   - id: 9
+    name: 
+    description: 
   hand: []
 --- !u!4 &165528883
 Transform:
@@ -177,6 +199,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &165528884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165528881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1d4db87a6013554fad8b3e10bb4beb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turn: 0
+  deck: {fileID: 165528882}
+  guests: {fileID: 165528885}
+  phase: 0
+--- !u!114 &165528885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165528881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42986a24749e7644e9279fc841abbcc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  traits:
+  - id: 0
+    name: Sharp Listenet
+    description: This character gains suspicion as if they were in the same room
+      as the murder when in any adjacent room
 --- !u!1 &2050645021
 GameObject:
   m_ObjectHideFlags: 0

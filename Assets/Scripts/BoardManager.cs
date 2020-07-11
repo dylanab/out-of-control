@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Guest;
 
-public class BoardManager {
+public class BoardManager : MonoBehaviour {
     private static BoardManager _instance = null;
 
     public Guest[] Guests;
@@ -24,7 +23,7 @@ public class BoardManager {
 
     private void Awake() {
         if(_instance != null && _instance != this) {
-            Destroy(this.gameObject);
+            GameObject.Destroy(this.gameObject);
             return;
         }
         _instance = this;

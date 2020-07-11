@@ -1,22 +1,20 @@
-public struct Guest {
+using System.Collections;
+using System.Collections.Generic;
+
+[System.Serializable]
+public class Guest {
     public int id;
     public string name;
-    public bool isAlive;
-    public int suspicion;
-    public Trait[] traits;
-    //TODO: add reference to a room or a room id int, not sure which makes the most sense
+    public bool isAlive = true;
+    public int suspicion = 0;
+    public List<Trait> traits = new List<Trait>();
+    public Room currentRoom;
     
-    public void IncreaseSuspicion() {
-        if(suspicion < maxSuspicion) { suspicion++; }
+    public void adjustSuspicion(int amount) {
+        suspicion = suspicion + amount; // Use a negative amount to subtract
     }
 
-    public void DecreaseSuspicion() {
-        if(suspicion > 0) { suspicion--; }
+    public void Kill() {
+        this.isAlive = false;
     }
-}
-
-public struct Trait {
-    public int id;
-    public string name;
-    public string description;
 }
