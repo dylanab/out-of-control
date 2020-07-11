@@ -2206,13 +2206,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deck: {fileID: 0}
-  discardCount: {fileID: 0}
-  discardImage: {fileID: 0}
-  deckCount: {fileID: 0}
-  deckImage: {fileID: 0}
-  empty: {fileID: 0}
-  medium: {fileID: 0}
-  full: {fileID: 0}
+  discardCount: {fileID: 6683321798101598473}
+  discardImage: {fileID: 6683321796212308094}
+  deckCount: {fileID: 6683321798058045857}
+  deckImage: {fileID: 6683321796263730921}
+  empty: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  medium: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  full: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   overlay: {fileID: 0}
 --- !u!1 &6683321797202273966
 GameObject:

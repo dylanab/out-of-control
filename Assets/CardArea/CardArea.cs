@@ -22,9 +22,6 @@ public class CardArea : MonoBehaviour
     public Sprite medium;
     public Sprite full;
 
-    // Overlay to prevent interaction
-    public Image overlay; 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -42,12 +39,7 @@ public class CardArea : MonoBehaviour
 
     // ----- Event Handlers -----
     private void OnPhaseChange(Phase newPhase) {
-        // Disable overlay to allow interaction while on the play phase
-        if (newPhase == Phase.Play) {
-            overlay.enabled = false;
-        } else {
-            overlay.enabled = true;
-        }
+        // TODO ?
     }
     private void OnDeckShuffle() 
     {
@@ -60,5 +52,23 @@ public class CardArea : MonoBehaviour
         int newDeckCount = deck.cards.Count;
         int newDiscardCount = deck.discard.Count;
 
+        // Select a sprite
+        this.deckImage.sprite = GetDeckSprite(newDeckCount);
+        this.discardImage.sprite = GetDeckSprite(newDiscardCount);
+
+        // Set counter
+        this.deckCount.text = newDeckCount.ToString();
+        this.discardCount.text = newDiscardCount.ToString();
+    }
+
+    // TODO: Finalize these values
+    private Sprite GetDeckSprite(int cardCount) {
+        if (cardCount > 10) {
+            return full;
+        } else if (cardCount > 1) {
+            return medium;
+        } else {
+            return empty;
+        }
     }
 }

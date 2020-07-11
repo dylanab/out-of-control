@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CardDeck : MonoBehaviour
 {
+    public int deckSize = 10;
     public List<Card> discard = new List<Card>(); // Do we need this?
     public List<Card> cards = new List<Card>();
     public List<Card> hand = new List<Card>();
@@ -16,12 +17,8 @@ public class CardDeck : MonoBehaviour
 
     #region Public Interface
     public void GetNewHand() {
-        Helpers.Shuffle<Card>(this.cards);
-        List<Card> newHand = new List<Card>();
-        for (int i = 0; i < HAND_SIZE; i++) {
-            newHand.Add(cards[i]);
-        }
-        this.hand = newHand;
+        DiscardHand();
+        StartCoroutine(DrawCardTimer(HAND_SIZE));
     }
 
     public void PrintCards(List<Card> cardsToPrint) {
@@ -32,4 +29,44 @@ public class CardDeck : MonoBehaviour
         Debug.Log(s);
     }
     #endregion Public Interface
+
+    #region Private Helpers
+    private Card drawCard() {
+        Card nextCard = cards[0];
+        cards.RemoveAt(0);
+
+        // If we just drew the last card, shuffle discard into the deck
+        if (cards.Count == 0) {
+            foreach(Card c in discard) {
+                cards.Add(c);
+                Helpers.Shuffle<Card>(cards);
+                discard = new List<Card>();
+            }
+        }
+
+        return nextCard;
+    }
+
+    private IEnumerator DrawCardTimer(int draws) {
+        while (draws > 0) {
+            yield return new WaitForSeconds(0.5f);
+            this.hand.Add(this.drawCard());
+            draws--;
+
+            // Alert Card display to show changes
+            if (this.cardsChanged != null)
+                this.cardsChanged();
+        }
+    }
+
+    private void DiscardHand() {
+        foreach(Card c in hand) {
+            discard.Add(c);
+        }
+        hand = new List<Card>();
+        // Alert Card display to show changes
+        if (this.cardsChanged != null)
+            this.cardsChanged();
+    }
+    #endregion Private Helpers
 }

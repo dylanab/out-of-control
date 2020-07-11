@@ -29,8 +29,23 @@ public class GameManager : Singleton<GameManager>
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.Space)) {
-            this.deck.GetNewHand();
-            this.deck.PrintCards(this.deck.hand);
+            deck.GetNewHand();
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad1)) {
+            phase = Phase.Play;
+            this.phaseChanged(Phase.Play);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad2)) {
+            phase = Phase.Resolution;
+            this.phaseChanged(Phase.Resolution);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad3)) {
+            phase = Phase.Setup;
+            this.phaseChanged(Phase.Setup);
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad4)) {
+            phase = Phase.Kill;
+            this.phaseChanged(Phase.Kill);
         }
     }
 
