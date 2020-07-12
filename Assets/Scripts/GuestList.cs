@@ -45,8 +45,8 @@ public class GuestList : MonoBehaviour
         
         for (int i = 0; i < guests.Count; i++)
         {
-            if(guest[i].isAlive) {
-                totalSuspicion += guest[i].suspicion;
+            if(guests[i].isAlive) {
+                totalSuspicion += guests[i].suspicion;
             }
         }
 

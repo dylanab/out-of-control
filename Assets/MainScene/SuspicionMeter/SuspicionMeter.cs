@@ -31,8 +31,8 @@ public class SuspicionMeter : MonoBehaviour
     }
 
     public void UpdateSuspicion(GameManager gameManager) {
-        guests GuestList = gameManager.guests;
-        newSuspicion = guests.GetTotalSuspicion();
+        GuestList guests = gameManager.guests;
+        int newSuspicion = guests.GetTotalSuspicion();
 
         if(newSuspicion > maxSuspicion) {
             newSuspicion = maxSuspicion;
