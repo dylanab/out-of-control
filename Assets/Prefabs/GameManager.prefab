@@ -48,7 +48,21 @@ MonoBehaviour:
   turn: 0
   deck: {fileID: 2939317244416722386}
   guests: {fileID: 2939317244416722389}
+  meter: {fileID: 0}
+  deathOverlay: {fileID: 0}
   phase: 0
+  victim:
+    id: 0
+    name: 
+    traitName: 
+    trait: 
+    description: 
+    portrait: {fileID: 0}
+    icon: {fileID: 0}
+    currentRoom: {fileID: 0}
+    isAlive: 1
+    suspicion: 0
+    status: 0
 --- !u!114 &2939317244416722386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,57 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deckSize: 10
   discard: []
-  cards:
-  - id: 0
-    name: Card 0
-    description: 
-    icon: {fileID: 0}
-    targetType: 0
-  - id: 1
-    name: Card 1
-    description: 
-    icon: {fileID: 0}
-    targetType: 0
-  - id: 2
-    name: Card 2
-    description: 
-    icon: {fileID: 0}
-    targetType: 0
-  - id: 3
-    name: Card 3
-    description: 
-    icon: {fileID: 0}
-    targetType: 0
-  - id: 4
-    name: Card 4
-    description: 
-    icon: {fileID: 0}
-    targetType: 0
-  - id: 5
-    name: Card 5
-    description: 
-    icon: {fileID: 0}
-    targetType: 0
-  - id: 6
-    name: Card 6
-    description: 
-    icon: {fileID: 0}
-    targetType: 0
-  - id: 7
-    name: Card 7
-    description: 
-    icon: {fileID: 0}
-    targetType: 0
-  - id: 8
-    name: Card 8
-    description: 
-    icon: {fileID: 0}
-    targetType: 0
-  - id: 9
-    name: Card 9
-    description: 
-    icon: {fileID: 0}
-    targetType: 0
+  cards: []
   hand: []
   cardData:
   - id: 0
@@ -145,6 +109,11 @@ MonoBehaviour:
   - id: 5
     name: Change of Plans
     description: Shuffle the discard pile into the deck and draw a card
+    icon: {fileID: 0}
+    targetType: 2
+  - id: 6
+    name: Bloodlust
+    description: The only way to get rid of a Bloodlust card is make a kill
     icon: {fileID: 0}
     targetType: 2
 --- !u!114 &2939317244416722389

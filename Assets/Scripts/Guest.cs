@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum Status {
-    None, Wine,
+    None, Wine, Seduced
 }
 
 [System.Serializable]

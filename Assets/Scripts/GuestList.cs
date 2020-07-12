@@ -53,9 +53,55 @@ public class GuestList : MonoBehaviour
         return totalSuspicion;
     }
 
+    public int GetGuestIndexByName(string targetName)
+    {
+        foreach(Guest g in guests)
+        {
+            if(g.name == targetName)
+            {
+                return guests.IndexOf(g);
+            }
+        }
+
+        return -1;
+    }
     #endregion Public interface
 
-    private void OnGuestKilled(Guest g) {
-        deathList[g.name] = true;
+    private void OnGuestKilled(Guest victim) {
+        foreach(Guest g in guests)
+        {
+            if (g.name == victim.name)
+            {
+                g.isAlive = false;
+                GuestPiece gp = pieces[g.name];
+                gp.guest.currentRoom.RemoveGuest(g);
+                gp.transform.position = piecesLocation.position;
+            }
+        }
+    }
+
+    private void OnPhaseChanged(Phase newPhase, Phase oldPhase)
+    {
+        if (newPhase == Phase.Setup)
+        {
+            foreach(Guest g in guests)
+            {
+                g.status = Status.None;
+            }
+        }
+    }
+
+    public int GetLivingCount()
+    {
+        int l = 0;
+        foreach(Guest g in guests)
+        {
+            if (g.isAlive)
+            {
+                l++;
+            }
+        }
+
+        return l - 1;
     }
 }

@@ -39,11 +39,14 @@ public class BoardManager : Singleton<BoardManager>
             for (int i = 0; i < guestList.guests.Count ; i++)
             {
                 Guest g = guestList.guests[i];
-                GuestPiece gp = guestList.pieces[g.name];
+                if (g.isAlive)
+                {
+                    GuestPiece gp = guestList.pieces[g.name];
 
-                // Pick a random room
-                Room r = GetRandomAvailableRoom(g);
-                r.AddGuest(gp);
+                    // Pick a random room
+                    Room r = GetRandomAvailableRoom(g);
+                    r.AddGuest(gp);
+                }
             }
 
             GameManager.Instance.GuestAssignmentDone();
