@@ -26,7 +26,7 @@ public class BoardManager : Singleton<BoardManager>
         return randomRoom;
     }
 
-    private void OnPhaseChange(Phase newPhase) 
+    private void OnPhaseChange(Phase newPhase, Phase prevPhase) 
     {
         // Set all rooms 
         if (newPhase == Phase.Setup) {

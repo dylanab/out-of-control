@@ -50,9 +50,9 @@ public class CardDeck : MonoBehaviour
     }
 
     #region Public Interface
-    public void GetNewHand() 
+    public void GetNewHand(bool discardBloodLust = false) 
     {
-        DiscardHand();
+        DiscardHand(discardBloodLust);
         StartCoroutine(DrawCardTimer(HAND_SIZE));
     }
 
@@ -78,11 +78,11 @@ public class CardDeck : MonoBehaviour
 
 
     #region Event handlers
-    private void OnPhaseChanged(Phase newPhase)
+    private void OnPhaseChanged(Phase newPhase, Phase previousPhase)
     {
         if (newPhase == Phase.Setup)
         {
-            GetNewHand();
+            GetNewHand(previousPhase == Phase.Kill);
         }
     }
     #endregion  
@@ -114,15 +114,25 @@ public class CardDeck : MonoBehaviour
             // Alert Card display to show changes
             if (this.cardsChanged != null)
                 this.cardsChanged();
+            
+            GameManager.Instance.DealingDone();
         }
     }
 
-    // TODO: HANDLE BLOODLUST CARDS
-    private void DiscardHand() {
+    private void DiscardHand(bool removeBloodlust) {
+        List<Card> cardsToRemove = new List<Card>();
         foreach(Card c in hand) {
-            discard.Add(c);
+            if (c.name != "Bloodlust" || removeBloodlust)
+            {
+                discard.Add(c);
+                cardsToRemove.Add(c);
+            }
         }
-        hand = new List<Card>();
+        foreach(Card c in cardsToRemove)
+        {
+            hand.Remove(c);
+        }
+
         // Alert Card display to show changes
         if (this.cardsChanged != null)
             this.cardsChanged();

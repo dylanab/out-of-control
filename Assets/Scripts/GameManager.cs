@@ -16,10 +16,13 @@ public class GameManager : Singleton<GameManager>
     public CardDeck deck;
     public GuestList guests;
 
+    // ----- Phase tracking -----
     public Phase phase = Phase.Initial;
+    private bool dealingDone = false;
+    private bool guestAssignmentDone = false;
 
     // ----- Events -----
-    public System.Action<Phase> phaseChanged; // Called when... the phase changes
+    public System.Action<Phase, Phase> phaseChanged; // Called when... the phase changes
     public System.Action<Guest> guestKilled;
     public System.Action<TargetType> beginTargeting; // Called when the user clicks a card to begin targeting
     public System.Action endTargeting; // Called when the use has selected a target
@@ -39,29 +42,13 @@ public class GameManager : Singleton<GameManager>
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.Space)) {
-            // AudioManager.Instance.PlayRandomQuip();
-            deck.GetNewHand();
+            AudioManager.Instance.PlayRandomQuip();
+            // deck.GetNewHand();
             // if (!targ)
             //     this.beginTargeting(TargetType.Guest);
             // else
             //     this.endTargeting();
             // targ = !targ;
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad1)) {
-            phase = Phase.Play;
-            this.phaseChanged(Phase.Play);
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad2)) {
-            phase = Phase.Resolution;
-            this.phaseChanged(Phase.Resolution);
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad3)) {
-            phase = Phase.Setup;
-            this.phaseChanged(Phase.Setup);
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad4)) {
-            phase = Phase.Kill;
-            this.phaseChanged(Phase.Kill);
         }
     }
 
@@ -105,6 +92,29 @@ public class GameManager : Singleton<GameManager>
         
         ResolveCard();
     }
+
+    // These two functions are used to know when to set phase to play
+    public void DealingDone() {
+        if (guestAssignmentDone)
+        {
+            SetPhase(Phase.Play);
+            guestAssignmentDone = false;
+            dealingDone = false;
+        } else {
+            dealingDone = true;
+        }
+    }
+
+    public void GuestAssignmentDone() {        
+        if (dealingDone)
+        {
+            SetPhase(Phase.Play);
+            guestAssignmentDone = false;
+            dealingDone = false;
+        } else {
+            guestAssignmentDone = true;
+        }
+    }
     #endregion Public Interface
 
 
@@ -118,16 +128,15 @@ public class GameManager : Singleton<GameManager>
     private IEnumerator InitialPhase(float time)
     {
         yield return new WaitForSeconds(time);
-        this.phase = Phase.Setup;
-        if (this.phaseChanged != null)
-            this.phaseChanged(Phase.Setup);
+        SetPhase(Phase.Setup);
     }
 
     private void SetPhase(Phase newPhase)
     {
-        this.phase = newPhase;
         if (this.phaseChanged != null)
-            this.phaseChanged(newPhase);
+            this.phaseChanged(newPhase, phase);
+
+        this.phase = newPhase;
     }
     #endregion Private Helpers
 

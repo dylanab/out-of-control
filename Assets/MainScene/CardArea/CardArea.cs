@@ -41,7 +41,7 @@ public class CardArea : MonoBehaviour
     }
 
     // ----- Event Handlers -----
-    private void OnPhaseChange(Phase newPhase) {
+    private void OnPhaseChange(Phase newPhase, Phase prevPhase) {
         // TODO ?
     }
     private void OnDeckShuffle() 

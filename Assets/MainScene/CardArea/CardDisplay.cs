@@ -12,6 +12,7 @@ public class CardDisplay : MonoBehaviour
     // Cached Components
     public Image icon;
     public GameObject cardBackground;
+    public GameObject bloodlustOverlay;
     public Text titleText;
     public Text descriptionText;
 
@@ -20,9 +21,14 @@ public class CardDisplay : MonoBehaviour
         {
             HideCard();
         }
+        else if (c.name == "Bloodlust")
+        {
+            bloodlustOverlay.SetActive(true);
+        }
         else
         {
             cardBackground.SetActive(true);
+            bloodlustOverlay.SetActive(false);
             // icon.sprite = c.icon;
             titleText.text = c.name;
             descriptionText.text = c.description;
@@ -31,6 +37,7 @@ public class CardDisplay : MonoBehaviour
 
     public void HideCard() {
         cardBackground.SetActive(false);
+        bloodlustOverlay.SetActive(false);
     }
 
     public void OnClick() {
