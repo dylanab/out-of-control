@@ -24,6 +24,7 @@ public class DeathOverlay : MonoBehaviour
     {
         guest.isAlive = false;
         portrait.SetGuest(guest);
+        AudioManager.Instance.PlayRandomQuip();
     }
 
     private void DoTheThing()
