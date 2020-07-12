@@ -29,6 +29,7 @@ public class GameManager : Singleton<GameManager>
 
     // Card reolution storage
     private Card currentCard;
+    private int currentCardIndex = 99;
     private TargetType currentTargetType;
     private Guest guestTarget;
     private Room roomTarget;
@@ -65,10 +66,11 @@ public class GameManager : Singleton<GameManager>
     }
 
     // Called when the plater uses a card on a target
-    public void UseCard(Card c) {
+    public void UseCard(Card c, int i) {
         // Set Phase to resolution to prevent input
         SetPhase(Phase.Resolution); // TEST THIS
         currentCard = c;
+        currentCardIndex = i;
         if (c.targetType != TargetType.None) {
             BeginTargeting(c);
         } else {
@@ -90,7 +92,7 @@ public class GameManager : Singleton<GameManager>
     // Called by a Room or Guest when targeted by a card
     public void SetTarget(GameObject obj) {
         if (currentTargetType == TargetType.Guest)
-            this.guestTarget = obj.GetComponent<Guest>();
+            this.guestTarget = obj.GetComponent<GuestPiece>().guest;
         else if (currentTargetType == TargetType.Room)
             this.roomTarget = obj.GetComponent<Room>();
         
@@ -101,9 +103,9 @@ public class GameManager : Singleton<GameManager>
     public void DealingDone() {
         if (guestAssignmentDone)
         {
-            SetPhase(Phase.Play);
             guestAssignmentDone = false;
             dealingDone = false;
+            SetPhase(Phase.Play);
         } else {
             dealingDone = true;
         }
@@ -112,9 +114,9 @@ public class GameManager : Singleton<GameManager>
     public void GuestAssignmentDone() { 
         if (dealingDone)
         {
-            SetPhase(Phase.Play);
             guestAssignmentDone = false;
             dealingDone = false;
+            SetPhase(Phase.Play);
         } else {
             guestAssignmentDone = true;
         }
@@ -147,16 +149,20 @@ public class GameManager : Singleton<GameManager>
 
     #region Giant Shameful Card Resolving Method
     private void ResolveCard() {
+        this.endTargeting();
+        Debug.Log("Resolving " + currentCard.name + " on target: " + (currentTargetType == TargetType.None ? "None" : guestTarget.name));
         // This is horrific and I would absolutely NEVER do this in production. But, y'know, game jam.
         switch(currentCard.name) {
             case "Card 1":
-                Debug.Log("Resolving Card 1");
                 break;
             default:
                 Debug.Log("This card does not exist: " + currentCard.name);
                 break;
         }
+
         // Remove card from hand
+        deck.Discard(currentCardIndex);
+
         currentCard = null;
         currentTargetType = TargetType.None;
         guestTarget = null;

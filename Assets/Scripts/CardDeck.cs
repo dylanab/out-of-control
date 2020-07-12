@@ -57,12 +57,12 @@ public class CardDeck : MonoBehaviour
         StartCoroutine(DrawCardTimer(HAND_SIZE - hand.Count));
     }
 
-    public void Discard(Card c) 
+    public void Discard(int cardIndex) 
     {
         // TODO: Test this
-        hand.Remove(c);
-        discard.Add(c);
-
+        discard.Add(hand[cardIndex]);
+        hand.RemoveAt(cardIndex);
+        
         if (this.cardsChanged != null)
             this.cardsChanged();
     }

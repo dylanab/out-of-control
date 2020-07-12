@@ -32,6 +32,12 @@ public class CardArea : MonoBehaviour
         deck.cardsChanged += this.OnCardsChanged;
         deck.deckShuffled += this.OnDeckShuffle;
         GameManager.Instance.phaseChanged += this.OnPhaseChange;
+        
+        // Set indexes of hand card slots
+        for (int i = 0; i < hand.Length; i++)
+        {
+            hand[i].index = i;
+        }
     }
 
     // Update is called once per frame
