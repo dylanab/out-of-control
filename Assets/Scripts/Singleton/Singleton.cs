@@ -9,7 +9,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     // Check to see if we're about to be destroyed.
     private static bool m_ShuttingDown = false;
     private static object m_Lock = new object();
-    private static T m_Instance;
+    protected static T m_Instance;
  
     /// <summary>
     /// Access singleton instance through this propriety.
@@ -47,6 +47,20 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
  
                 return m_Instance;
             }
+        }
+    }
+
+    protected virtual void Awake()
+    {
+        // Set the first instance
+        if (m_Instance == null)
+        {
+            m_Instance = this as T;
+        }
+        else
+        {
+            Debug.LogError("Duplicate Singleton, destroying self: " + gameObject.name);
+            Destroy(gameObject);
         }
     }
  

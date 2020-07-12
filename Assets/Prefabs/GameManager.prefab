@@ -61,38 +61,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 015f7c6c21047804eb6c324d637b1c39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deckSize: 10
   discard: []
   cards:
   - id: 0
-    name: 
+    name: Card 0
     description: 
+    icon: {fileID: 0}
+    targetType: 0
   - id: 1
-    name: 
+    name: Card 1
     description: 
+    icon: {fileID: 0}
+    targetType: 0
   - id: 2
-    name: 
+    name: Card 2
     description: 
+    icon: {fileID: 0}
+    targetType: 0
   - id: 3
-    name: 
+    name: Card 3
     description: 
+    icon: {fileID: 0}
+    targetType: 0
   - id: 4
-    name: 
+    name: Card 4
     description: 
+    icon: {fileID: 0}
+    targetType: 0
   - id: 5
-    name: 
+    name: Card 5
     description: 
+    icon: {fileID: 0}
+    targetType: 0
   - id: 6
-    name: 
+    name: Card 6
     description: 
+    icon: {fileID: 0}
+    targetType: 0
   - id: 7
-    name: 
+    name: Card 7
     description: 
+    icon: {fileID: 0}
+    targetType: 0
   - id: 8
-    name: 
+    name: Card 8
     description: 
+    icon: {fileID: 0}
+    targetType: 0
   - id: 9
-    name: 
+    name: Card 9
     description: 
+    icon: {fileID: 0}
+    targetType: 0
   hand: []
 --- !u!114 &2939317244416722389
 MonoBehaviour:
@@ -106,14 +127,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42986a24749e7644e9279fc841abbcc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  traits:
-  - id: 0
-    name: Sharp Listener
-    description: This character gains suspicion as if they were in the same room
-      as the murder when in any adjacent room
+  piecePrefab: {fileID: 4981951634582581143, guid: 5c6f9847f49f7714486a1d39e56b34fa,
+    type: 3}
   guests:
   - id: 0
-    name: name 0
+    name: Cory Ander
+    portrait: {fileID: 21300000, guid: f9d9640438af48c48896b280bc38c730, type: 3}
+    icon: {fileID: 21300000, guid: 3e98ff6659ecc5d4c9d6c63bd57587f1, type: 3}
+    currentRoom: {fileID: 0}
     isAlive: 1
     suspicion: 0
-    traits: []
+  - id: 1
+    name: Eve Flat
+    portrait: {fileID: 21300000, guid: 8ad30bf32acab004cb5a84a9fef75889, type: 3}
+    icon: {fileID: 21300000, guid: c9bc6a2a63b45cb4999ae3c2df03fe51, type: 3}
+    currentRoom: {fileID: 0}
+    isAlive: 1
+    suspicion: 0
+  - id: 2
+    name: 'Brigadier Hefton Cornwall '
+    portrait: {fileID: 21300000, guid: 317d92da95cb03646954966435bf8d39, type: 3}
+    icon: {fileID: 21300000, guid: 2406df3d5ae91f047919646fdf3917e3, type: 3}
+    currentRoom: {fileID: 0}
+    isAlive: 1
+    suspicion: 0
+  - id: 3
+    name: The Duke of Pork
+    portrait: {fileID: 21300000, guid: 813fff38e8f6f1943bae0fb1f187914d, type: 3}
+    icon: {fileID: 21300000, guid: 52ebe75706aa4334ba80e8cc6def6e10, type: 3}
+    currentRoom: {fileID: 0}
+    isAlive: 1
+    suspicion: 0
+  - id: 4
+    name: Dewey Decimal
+    portrait: {fileID: 21300000, guid: 0abf0d8ae7bf7c74ba2e5d89d440f1da, type: 3}
+    icon: {fileID: 21300000, guid: 8ba4f384ec6c3aa4e876f5f9b939f935, type: 3}
+    currentRoom: {fileID: 0}
+    isAlive: 1
+    suspicion: 0
+  - id: 5
+    name: 'Madeline the Maid '
+    portrait: {fileID: 21300000, guid: 85888e7e588461a44b44f852672be0e5, type: 3}
+    icon: {fileID: 21300000, guid: 19c6bcc1cb1eb9e42a8e1b897126d62b, type: 3}
+    currentRoom: {fileID: 0}
+    isAlive: 1
+    suspicion: 0
+  - id: 6
+    name: Adrian Van Hansing
+    portrait: {fileID: 21300000, guid: 4e4b8831299b0804fb251304e643d126, type: 3}
+    icon: {fileID: 21300000, guid: 0796b88cd9b43ac4aad05107bf80d53b, type: 3}
+    currentRoom: {fileID: 0}
+    isAlive: 1
+    suspicion: 0
+  piecesLocation: {fileID: 0}

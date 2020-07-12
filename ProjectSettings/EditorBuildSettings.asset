@@ -12,9 +12,9 @@ EditorBuildSettings:
     path: Assets/MainMenu/MainMenu.unity
     guid: c764b0373348f0e40b44935f160d8d8d
   - enabled: 1
+    path: Assets/MainScene/MainScene.unity
+    guid: 4705a461bf8700c43b8780fdd3a3adf3
+  - enabled: 0
     path: Assets/dylan/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/Scenes/CoryScene.unity
-    guid: 4705a461bf8700c43b8780fdd3a3adf3
   m_configObjects: {}

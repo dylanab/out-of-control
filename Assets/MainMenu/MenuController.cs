@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class MenuController : MonoBehaviour
 {
     public void OnStart() {
-        SceneManager.LoadScene("CoryScene");
+        SceneManager.LoadScene("MainScene");
     }
 
     public void OnQuit() {

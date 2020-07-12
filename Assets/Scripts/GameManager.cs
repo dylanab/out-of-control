@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum Phase {
+    Initial,
     Setup,
     Play,
     Resolution, // Needed?
@@ -15,21 +16,30 @@ public class GameManager : Singleton<GameManager>
     public CardDeck deck;
     public GuestList guests;
 
-    public Phase phase = Phase.Setup;
+    public Phase phase = Phase.Initial;
 
     // ----- Events -----
     public System.Action<Phase> phaseChanged; // Called when... the phase changes
     public System.Action<Guest> guestKilled;
     public System.Action<TargetType> beginTargeting; // Called when the user clicks a card to begin targeting
+    public System.Action endTargeting; // Called when the use has selected a target
 
+    // Debug
+    private bool targ =false;
     void Start()
     {
-        
+        StartCoroutine(InitialPhase(2f));
     }
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.Space)) {
-            deck.GetNewHand();
+            // AudioManager.Instance.PlayRandomQuip();
+            // deck.GetNewHand();
+            if (!targ)
+                this.beginTargeting(TargetType.Guest);
+            else
+                this.endTargeting();
+            targ = !targ;
         }
         if (Input.GetKeyDown(KeyCode.Keypad1)) {
             phase = Phase.Play;
@@ -59,6 +69,7 @@ public class GameManager : Singleton<GameManager>
     // Called when the plater uses a card on a target
     public void UseCard(Card c, GameObject target = null) {
         // TODO: Based on the target type and the card, resolve the card
+        // Set Phase to Resolve to prevent input
     }
 
     // Called when the player selects a target to kill
@@ -74,8 +85,33 @@ public class GameManager : Singleton<GameManager>
 
 
     #region Private Helpers
-    private void initialize() {
+    private void initialize() 
+    {
         this.deck.GetNewHand();
     }
+
+    // Called at start to wait a bit before setup while the game fades in
+    private IEnumerator InitialPhase(float time)
+    {
+        yield return new WaitForSeconds(time);
+        this.phase = Phase.Setup;
+        if (this.phaseChanged != null)
+            this.phaseChanged(Phase.Setup);
+    }
     #endregion Private Helpers
+
+
+    #region Giant Shameful Card Resolving Method
+    private void ResolveCard(Card c, GameObject target) {
+        // This is horrific and I would absolutely NEVER do this in production. But, y'know, game jam.
+        switch(c.name) {
+            case "Card 1":
+                Debug.Log("Resolving Card 1");
+                break;
+            default:
+                Debug.Log("This card does not exist: " + c.name);
+                break;
+        }
+    }
+    #endregion Giant Shameful Card Resolving Method
 }
