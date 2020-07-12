@@ -55,7 +55,7 @@ public class CardArea : MonoBehaviour
         // Play shuffle animation
     }
 
-    private void OnCardsChanged() 
+    private void OnCardsChanged(bool shuffle) 
     {
         // Get new values
         int newDeckCount = deck.cards.Count;
@@ -76,6 +76,11 @@ public class CardArea : MonoBehaviour
             else
                 this.hand[i].SetCard(null);
         }
+
+        if (shuffle)
+            AudioManager.Instance.Shuffle();
+        else
+            AudioManager.Instance.Draw();
     }
 
     // TODO: Finalize these values

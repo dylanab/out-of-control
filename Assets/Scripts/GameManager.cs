@@ -153,7 +153,8 @@ public class GameManager : Singleton<GameManager>
         Debug.Log("Resolving " + currentCard.name + " on target: " + (currentTargetType == TargetType.None ? "None" : guestTarget.name));
         // This is horrific and I would absolutely NEVER do this in production. But, y'know, game jam.
         switch(currentCard.name) {
-            case "Card 1":
+            case "Wine":
+                guestTarget.status = Status.Wine;
                 break;
             default:
                 Debug.Log("This card does not exist: " + currentCard.name);
