@@ -39,6 +39,20 @@ public class GuestList : MonoBehaviour
     {
         return deathList[g.name];
     }
+
+    public int GetTotalSuspicion() {
+        int totalSuspicion = 0;
+        
+        for (int i = 0; i < guests.Count; i++)
+        {
+            if(guest[i].isAlive) {
+                totalSuspicion += guest[i].suspicion;
+            }
+        }
+
+        return totalSuspicion;
+    }
+
     #endregion Public interface
 
     private void OnGuestKilled(Guest g) {
