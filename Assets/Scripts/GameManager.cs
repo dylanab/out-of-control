@@ -50,6 +50,10 @@ public class GameManager : Singleton<GameManager>
             //     this.endTargeting();
             // targ = !targ;
         }
+        if(Input.GetKeyDown(KeyCode.Keypad1))
+        {
+            SetPhase(Phase.Setup);
+        }
     }
 
     #region Public Interface
@@ -105,7 +109,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public void GuestAssignmentDone() {        
+    public void GuestAssignmentDone() { 
         if (dealingDone)
         {
             SetPhase(Phase.Play);

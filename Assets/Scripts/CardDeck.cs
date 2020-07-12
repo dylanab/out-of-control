@@ -115,9 +115,9 @@ public class CardDeck : MonoBehaviour
             // Alert Card display to show changes
             if (this.cardsChanged != null)
                 this.cardsChanged();
-            
-            GameManager.Instance.DealingDone();
         }
+
+        GameManager.Instance.DealingDone();
     }
 
     private void DiscardHand(bool removeBloodlust) {

@@ -16,11 +16,11 @@ public class BoardManager : Singleton<BoardManager>
     }
 
     // Used to get a room at random that has enough space for a guest
-    public Room GetRandomAvailableRoom(Guest g) 
+    public Room GetRandomAvailableRoom(Guest g, bool forceNew = false) 
     {
-        Room randomRoom = g.currentRoom;
-        while(randomRoom == g.currentRoom && randomRoom.guests.Count < randomRoom.maxGuests) {
-            randomRoom = rooms[Random.Range(0, rooms.Length - 1)];
+        Room randomRoom = rooms[Random.Range(0, rooms.Length)];
+        while((forceNew && randomRoom == g.currentRoom) || randomRoom.guests.Count >= randomRoom.maxGuests) {
+            randomRoom = rooms[Random.Range(0, rooms.Length)];
         }
 
         return randomRoom;
@@ -30,13 +30,23 @@ public class BoardManager : Singleton<BoardManager>
     {
         // Set all rooms 
         if (newPhase == Phase.Setup) {
+            // Remove all guests from all rooms
+            foreach(Room r in rooms)
+            {
+                r.Clear();
+            }
+
             for (int i = 0; i < guestList.guests.Count ; i++)
             {
                 Guest g = guestList.guests[i];
                 GuestPiece gp = guestList.pieces[g.name];
 
                 // Pick a random room
+                Room r = GetRandomAvailableRoom(g);
+                r.AddGuest(gp);
             }
+
+            GameManager.Instance.GuestAssignmentDone();
         }
     }
 }

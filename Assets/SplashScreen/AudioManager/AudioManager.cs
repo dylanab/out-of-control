@@ -18,7 +18,7 @@ public class AudioManager : PersistentSingleton<AudioManager>
     public void PlayRandomQuip() {
         int selection = lastQuip;
         while (selection == lastQuip) {
-            selection = Random.Range(0, quips.Count - 1);
+            selection = Random.Range(0, quips.Count);
         }
 
         source.PlayOneShot(quips[selection]);

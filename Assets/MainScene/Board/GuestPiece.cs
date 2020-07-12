@@ -7,7 +7,7 @@ public class GuestPiece : MonoBehaviour
     public SpriteRenderer highlight;
     public SpriteRenderer icon;
 
-    private Guest guest;
+    public Guest guest;
     private bool targeting = false; // Set true while the player is looking for a card target
     private bool isTarget = false; 
 
