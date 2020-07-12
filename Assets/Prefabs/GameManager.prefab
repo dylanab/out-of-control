@@ -115,6 +115,38 @@ MonoBehaviour:
     icon: {fileID: 0}
     targetType: 0
   hand: []
+  cardData:
+  - id: 0
+    name: Wine
+    description: Disabled target guest's trait for the night
+    icon: {fileID: 0}
+    targetType: 0
+  - id: 1
+    name: Hypnotize
+    description: Removes 2 suspicion from target guest
+    icon: {fileID: 0}
+    targetType: 0
+  - id: 2
+    name: Bad Directions
+    description: Move target Guest to another random room in the mansion.
+    icon: {fileID: 0}
+    targetType: 0
+  - id: 3
+    name: Silence
+    description: Kills in target room will not arouse suspicion  in adjacent rooms
+      tonight
+    icon: {fileID: 0}
+    targetType: 1
+  - id: 4
+    name: Seduce
+    description: Target guest will gain no suspicion tonight
+    icon: {fileID: 0}
+    targetType: 0
+  - id: 5
+    name: Change of Plans
+    description: Shuffle the discard pile into the deck and draw a card
+    icon: {fileID: 0}
+    targetType: 2
 --- !u!114 &2939317244416722389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,51 +164,113 @@ MonoBehaviour:
   guests:
   - id: 0
     name: Cory Ander
+    traitName: Suspicious
+    trait: Begins the game with 3 suspicion
+    description: 
     portrait: {fileID: 21300000, guid: f9d9640438af48c48896b280bc38c730, type: 3}
     icon: {fileID: 21300000, guid: 3e98ff6659ecc5d4c9d6c63bd57587f1, type: 3}
     currentRoom: {fileID: 0}
     isAlive: 1
-    suspicion: 0
+    suspicion: 3
+    status: 0
   - id: 1
     name: Eve Flat
+    traitName: High Note
+    trait: Screams when killed, increasing each other guest's suspicion by 1
+    description: 
     portrait: {fileID: 21300000, guid: 8ad30bf32acab004cb5a84a9fef75889, type: 3}
     icon: {fileID: 21300000, guid: c9bc6a2a63b45cb4999ae3c2df03fe51, type: 3}
     currentRoom: {fileID: 0}
     isAlive: 1
     suspicion: 0
+    status: 0
   - id: 2
     name: 'Brigadier Hefton Cornwall '
+    traitName: Combatant
+    trait: 'Must be alone in a room to be killed '
+    description: 
     portrait: {fileID: 21300000, guid: 317d92da95cb03646954966435bf8d39, type: 3}
     icon: {fileID: 21300000, guid: 2406df3d5ae91f047919646fdf3917e3, type: 3}
     currentRoom: {fileID: 0}
     isAlive: 1
     suspicion: 0
+    status: 0
   - id: 3
     name: The Duke of Pork
+    traitName: Unlikeable
+    trait: Reduces suspicion gained by 1 when in the same room as the murder
+    description: 
     portrait: {fileID: 21300000, guid: 813fff38e8f6f1943bae0fb1f187914d, type: 3}
     icon: {fileID: 21300000, guid: 52ebe75706aa4334ba80e8cc6def6e10, type: 3}
     currentRoom: {fileID: 0}
     isAlive: 1
     suspicion: 0
+    status: 0
   - id: 4
     name: Dewey Decimal
+    traitName: Bookworm
+    trait: Stays in the Library
+    description: 
     portrait: {fileID: 21300000, guid: 0abf0d8ae7bf7c74ba2e5d89d440f1da, type: 3}
     icon: {fileID: 21300000, guid: 8ba4f384ec6c3aa4e876f5f9b939f935, type: 3}
     currentRoom: {fileID: 0}
     isAlive: 1
     suspicion: 0
+    status: 0
   - id: 5
     name: 'Madeline the Maid '
+    traitName: Gossip
+    trait: If Madeline is in the same room as the murder, all other guests' suspicion
+      increases by 1
+    description: 
     portrait: {fileID: 21300000, guid: 85888e7e588461a44b44f852672be0e5, type: 3}
     icon: {fileID: 21300000, guid: 19c6bcc1cb1eb9e42a8e1b897126d62b, type: 3}
     currentRoom: {fileID: 0}
     isAlive: 1
     suspicion: 0
+    status: 0
   - id: 6
     name: Adrian Van Hansing
+    traitName: Professional
+    trait: Cannot be targeted by cards
+    description: 
     portrait: {fileID: 21300000, guid: 4e4b8831299b0804fb251304e643d126, type: 3}
     icon: {fileID: 21300000, guid: 0796b88cd9b43ac4aad05107bf80d53b, type: 3}
     currentRoom: {fileID: 0}
     isAlive: 1
     suspicion: 0
+    status: 0
+  - id: 7
+    name: Princess Porch
+    traitName: 
+    trait: 
+    description: 
+    portrait: {fileID: 21300000, guid: d6c57cffcd45e5141920e3e52807a5de, type: 3}
+    icon: {fileID: 21300000, guid: 8b6d9c1354950024b87986dfbf16e38e, type: 3}
+    currentRoom: {fileID: 0}
+    isAlive: 1
+    suspicion: 0
+    status: 0
+  - id: 8
+    name: Inspector D. Tektor
+    traitName: 
+    trait: 
+    description: 
+    portrait: {fileID: 21300000, guid: db61380f35ba0394781a3f3a6eed52ab, type: 3}
+    icon: {fileID: 21300000, guid: fd35761f401a5be4eae1d2ecd1b15135, type: 3}
+    currentRoom: {fileID: 0}
+    isAlive: 1
+    suspicion: 0
+    status: 0
+  - id: 9
+    name: Michelle Lin
+    traitName: 
+    trait: 
+    description: 
+    portrait: {fileID: 21300000, guid: 3829793ac8263344d93643dceba53aac, type: 3}
+    icon: {fileID: 21300000, guid: 425eaf252c3d21f458854b8e5b5454f1, type: 3}
+    currentRoom: {fileID: 0}
+    isAlive: 1
+    suspicion: 0
+    status: 0
   piecesLocation: {fileID: 0}

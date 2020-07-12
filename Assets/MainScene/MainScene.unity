@@ -251,6 +251,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 90958323}
   m_CullTransparentMesh: 0
+--- !u!1 &173633067 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1138599098895760821, guid: d6267736e13e49d4b870bf8987865c5f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1138599098928631384}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &173633068
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173633067}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!224 &511341550 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1138599098895760822, guid: d6267736e13e49d4b870bf8987865c5f,
@@ -520,7 +545,7 @@ RectTransform:
   m_Children:
   - {fileID: 1586707687}
   m_Father: {fileID: 1541343873}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -717,9 +742,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 767442580}
+  - {fileID: 1471097845}
   - {fileID: 1112547690}
   - {fileID: 511341550}
-  - {fileID: 1471097845}
   - {fileID: 1579927491}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -1202,6 +1227,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2939317244416722386, guid: 2a469384c8f704645831205ba059bdf1,
+        type: 3}
+      propertyPath: cards.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2939317244416722387, guid: 2a469384c8f704645831205ba059bdf1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1313,6 +1343,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6039008238222847383, guid: ac1d7c681518841408c0ff704c555dfd,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -31.24
+      objectReference: {fileID: 0}
     - target: {fileID: 6039008239521595712, guid: ac1d7c681518841408c0ff704c555dfd,
         type: 3}
       propertyPath: guestList

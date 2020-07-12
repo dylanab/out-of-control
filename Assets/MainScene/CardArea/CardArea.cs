@@ -22,6 +22,9 @@ public class CardArea : MonoBehaviour
     public Sprite medium;
     public Sprite full;
 
+    [Header("Hand")]
+    public CardDisplay[] hand;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +61,15 @@ public class CardArea : MonoBehaviour
 
         // Set counter
         this.deckCount.text = newDeckCount.ToString();
+
+        // Deal with the hand (pun intended)
+        for (int i = 0; i < 5; i++)
+        {
+            if (i < deck.hand.Count) 
+                this.hand[i].SetCard(this.deck.hand[i]);
+            else
+                this.hand[i].SetCard(null);
+        }
     }
 
     // TODO: Finalize these values

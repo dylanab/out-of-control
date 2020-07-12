@@ -7,22 +7,30 @@ using UnityEngine.UI;
 public class CardDisplay : MonoBehaviour
 {
     public Card card;
+    public Animator animator;
 
     // Cached Components
     public Image icon;
-    public Image cardBackground;
+    public GameObject cardBackground;
     public Text titleText;
     public Text descriptionText;
 
-    public void SetCard(Card c) {
-        cardBackground.enabled = true;
-        icon.sprite = c.icon;
-        titleText.text = c.name;
-        descriptionText.text = c.description;
+    public void SetCard(Card c = null) {
+        if (c == null) 
+        {
+            HideCard();
+        }
+        else
+        {
+            cardBackground.SetActive(true);
+            // icon.sprite = c.icon;
+            titleText.text = c.name;
+            descriptionText.text = c.description;
+        }   
     }
 
     public void HideCard() {
-        cardBackground.enabled = false;
+        cardBackground.SetActive(false);
     }
 
     public void OnClick() {

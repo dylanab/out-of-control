@@ -9,6 +9,7 @@ public class GuestPiece : MonoBehaviour
 
     private Guest guest;
     private bool targeting = false; // Set true while the player is looking for a card target
+    private bool isTarget = false; 
 
     // Start is called before the first frame update
     void Start()
@@ -17,18 +18,25 @@ public class GuestPiece : MonoBehaviour
         GameManager.Instance.endTargeting += OnTargetingEnd;
     }
 
+    private void Update() {
+        // Guest was targeted by a card or murder button
+        if (Input.GetMouseButtonUp(0) && isTarget) {
+            GameManager.Instance.SetTarget(this.gameObject);
+        }
+    }
+
     private void OnMouseEnter() 
     {
-        Debug.Log("Mouse In");
         if (targeting) {
             highlight.enabled = true;
+            isTarget = true;
         }
     }
 
     private void OnMouseExit() 
     {
-        Debug.Log("Mouse Out");
         highlight.enabled = false;
+        isTarget = false;
     }
 
     public void SetGuest(Guest g) 
@@ -39,7 +47,7 @@ public class GuestPiece : MonoBehaviour
 
     private void OnTargetingBegin(TargetType type) 
     {
-        if (type == TargetType.Guest)
+        if (type == TargetType.Guest && guest.name != "Adrian Van Hansing")
             targeting = true;
     }
 

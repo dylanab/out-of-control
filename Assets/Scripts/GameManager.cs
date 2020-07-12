@@ -24,6 +24,12 @@ public class GameManager : Singleton<GameManager>
     public System.Action<TargetType> beginTargeting; // Called when the user clicks a card to begin targeting
     public System.Action endTargeting; // Called when the use has selected a target
 
+    // Card reolution storage
+    private Card currentCard;
+    private TargetType currentTargetType;
+    private Guest guestTarget;
+    private Room roomTarget;
+
     // Debug
     private bool targ =false;
     void Start()
@@ -34,12 +40,12 @@ public class GameManager : Singleton<GameManager>
     void Update() {
         if (Input.GetKeyDown(KeyCode.Space)) {
             // AudioManager.Instance.PlayRandomQuip();
-            // deck.GetNewHand();
-            if (!targ)
-                this.beginTargeting(TargetType.Guest);
-            else
-                this.endTargeting();
-            targ = !targ;
+            deck.GetNewHand();
+            // if (!targ)
+            //     this.beginTargeting(TargetType.Guest);
+            // else
+            //     this.endTargeting();
+            // targ = !targ;
         }
         if (Input.GetKeyDown(KeyCode.Keypad1)) {
             phase = Phase.Play;
@@ -62,14 +68,22 @@ public class GameManager : Singleton<GameManager>
     #region Public Interface
     public void BeginTargeting(Card c) {
         if (beginTargeting != null) {
+            currentTargetType = c.targetType;
             beginTargeting(c.targetType);
         }
     }
 
     // Called when the plater uses a card on a target
-    public void UseCard(Card c, GameObject target = null) {
-        // TODO: Based on the target type and the card, resolve the card
-        // Set Phase to Resolve to prevent input
+    public void UseCard(Card c) {
+        // Set Phase to resolution to prevent input
+        SetPhase(Phase.Resolution); // TEST THIS
+        currentCard = c;
+        if (c.targetType != TargetType.None) {
+            BeginTargeting(c);
+        } else {
+            currentTargetType = TargetType.None;
+            ResolveCard();
+        }
     }
 
     // Called when the player selects a target to kill
@@ -80,6 +94,16 @@ public class GameManager : Singleton<GameManager>
     // Called when the player ends the night without selecting a target
     public void EndNight() {
         // TODO: Add a bloodlust card to the deck, 
+    }
+
+    // Called by a Room or Guest when targeted by a card
+    public void SetTarget(GameObject obj) {
+        if (currentTargetType == TargetType.Guest)
+            this.guestTarget = obj.GetComponent<Guest>();
+        else if (currentTargetType == TargetType.Room)
+            this.roomTarget = obj.GetComponent<Room>();
+        
+        ResolveCard();
     }
     #endregion Public Interface
 
@@ -98,20 +122,33 @@ public class GameManager : Singleton<GameManager>
         if (this.phaseChanged != null)
             this.phaseChanged(Phase.Setup);
     }
+
+    private void SetPhase(Phase newPhase)
+    {
+        this.phase = newPhase;
+        if (this.phaseChanged != null)
+            this.phaseChanged(newPhase);
+    }
     #endregion Private Helpers
 
 
     #region Giant Shameful Card Resolving Method
-    private void ResolveCard(Card c, GameObject target) {
+    private void ResolveCard() {
         // This is horrific and I would absolutely NEVER do this in production. But, y'know, game jam.
-        switch(c.name) {
+        switch(currentCard.name) {
             case "Card 1":
                 Debug.Log("Resolving Card 1");
                 break;
             default:
-                Debug.Log("This card does not exist: " + c.name);
+                Debug.Log("This card does not exist: " + currentCard.name);
                 break;
         }
+        // Remove card from hand
+        currentCard = null;
+        currentTargetType = TargetType.None;
+        guestTarget = null;
+        roomTarget = null;
+        SetPhase(Phase.Play);
     }
     #endregion Giant Shameful Card Resolving Method
 }
