@@ -42,8 +42,8 @@ public class GameManager : Singleton<GameManager>
 
     void Update() {
         if (Input.GetKeyDown(KeyCode.Space)) {
-            AudioManager.Instance.PlayRandomQuip();
-            // deck.GetNewHand();
+            // AudioManager.Instance.PlayRandomQuip();
+            deck.GetNewHand();
             // if (!targ)
             //     this.beginTargeting(TargetType.Guest);
             // else

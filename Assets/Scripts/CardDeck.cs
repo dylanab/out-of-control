@@ -19,6 +19,7 @@ public class CardDeck : MonoBehaviour
         {3, 2},
         {4, 2},
         {5, 2},
+        {6, 3},
     };
     #endregion Card Data
 
@@ -53,7 +54,7 @@ public class CardDeck : MonoBehaviour
     public void GetNewHand(bool discardBloodLust = false) 
     {
         DiscardHand(discardBloodLust);
-        StartCoroutine(DrawCardTimer(HAND_SIZE));
+        StartCoroutine(DrawCardTimer(HAND_SIZE - hand.Count));
     }
 
     public void Discard(Card c) 

@@ -760,6 +760,31 @@ PrefabInstance:
       propertyPath: cards.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2939317244416722386, guid: 2a469384c8f704645831205ba059bdf1,
+        type: 3}
+      propertyPath: cardData.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2939317244416722386, guid: 2a469384c8f704645831205ba059bdf1,
+        type: 3}
+      propertyPath: cardData.Array.data[6].id
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2939317244416722386, guid: 2a469384c8f704645831205ba059bdf1,
+        type: 3}
+      propertyPath: cardData.Array.data[6].name
+      value: Bloodlust
+      objectReference: {fileID: 0}
+    - target: {fileID: 2939317244416722386, guid: 2a469384c8f704645831205ba059bdf1,
+        type: 3}
+      propertyPath: cardData.Array.data[6].description
+      value: The only way to get rid of a Bloodlust card is make a kill
+      objectReference: {fileID: 0}
+    - target: {fileID: 2939317244416722386, guid: 2a469384c8f704645831205ba059bdf1,
+        type: 3}
+      propertyPath: cardData.Array.data[6].targetType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2939317244416722387, guid: 2a469384c8f704645831205ba059bdf1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -957,6 +982,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1541343873}
     m_Modifications:
+    - target: {fileID: 561947235, guid: d7066ea9077d55f41a1027cd8b7c2126, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 561947235, guid: d7066ea9077d55f41a1027cd8b7c2126, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0.000061035156
+      objectReference: {fileID: 0}
+    - target: {fileID: 967825216, guid: d7066ea9077d55f41a1027cd8b7c2126, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 967825216, guid: d7066ea9077d55f41a1027cd8b7c2126, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1264198130, guid: d7066ea9077d55f41a1027cd8b7c2126, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1264198130, guid: d7066ea9077d55f41a1027cd8b7c2126, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1875168183, guid: d7066ea9077d55f41a1027cd8b7c2126, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1875168183, guid: d7066ea9077d55f41a1027cd8b7c2126, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -0.000030517578
+      objectReference: {fileID: 0}
     - target: {fileID: 6683321797066021701, guid: d7066ea9077d55f41a1027cd8b7c2126,
         type: 3}
       propertyPath: m_Name
