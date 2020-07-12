@@ -6,6 +6,7 @@ using UnityEngine.UI;
 // Script for UI element that displays a card in the player's hand
 public class CardDisplay : MonoBehaviour
 {
+    public int index = -1;
     public Card card;
     public Animator animator;
 
@@ -17,6 +18,7 @@ public class CardDisplay : MonoBehaviour
     public Text descriptionText;
 
     public void SetCard(Card c = null) {
+        card = c;
         if (c == null) 
         {
             HideCard();
@@ -41,10 +43,10 @@ public class CardDisplay : MonoBehaviour
     }
 
     public void OnClick() {
-        Debug.Log("CLICKED CARD");
-        // if (card.targetType != TargetType.None)
-        //     GameManager.Instance.BeginTargeting(card);
-        // else
-        //     GameManager.Instance.UseCard(card);
+        Debug.Log(card.name);
+        if (card.name != "Bloodlust")
+        {
+            GameManager.Instance.UseCard(card, index);
+        }
     }
 }

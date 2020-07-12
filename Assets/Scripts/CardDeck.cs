@@ -25,7 +25,7 @@ public class CardDeck : MonoBehaviour
 
     // ----- Events -----
     public event System.Action deckShuffled;
-    public event System.Action cardsChanged; // Alerts card UI that hand/deck/discard have changes 
+    public event System.Action<bool> cardsChanged; // Alerts card UI that hand/deck/discard have changes 
     
     private const int HAND_SIZE = 5;
 
@@ -57,14 +57,14 @@ public class CardDeck : MonoBehaviour
         StartCoroutine(DrawCardTimer(HAND_SIZE - hand.Count));
     }
 
-    public void Discard(Card c) 
+    public void Discard(int cardIndex) 
     {
         // TODO: Test this
-        hand.Remove(c);
-        discard.Add(c);
+        discard.Add(hand[cardIndex]);
+        hand.RemoveAt(cardIndex);
 
         if (this.cardsChanged != null)
-            this.cardsChanged();
+            this.cardsChanged(false);
     }
 
     public void PrintCards(List<Card> cardsToPrint) 
@@ -114,7 +114,7 @@ public class CardDeck : MonoBehaviour
 
             // Alert Card display to show changes
             if (this.cardsChanged != null)
-                this.cardsChanged();
+                this.cardsChanged(false);
         }
 
         GameManager.Instance.DealingDone();
@@ -136,14 +136,14 @@ public class CardDeck : MonoBehaviour
 
         // Alert Card display to show changes
         if (this.cardsChanged != null)
-            this.cardsChanged();
+            this.cardsChanged(true);
     }
 
     private IEnumerator DelayedAlert(float delay)
     {
         yield return new WaitForSeconds(delay);
         if (this.cardsChanged != null)
-            this.cardsChanged();
+            this.cardsChanged(true);
     }
     #endregion Private Helpers
 }

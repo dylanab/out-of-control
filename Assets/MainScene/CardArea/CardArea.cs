@@ -32,6 +32,12 @@ public class CardArea : MonoBehaviour
         deck.cardsChanged += this.OnCardsChanged;
         deck.deckShuffled += this.OnDeckShuffle;
         GameManager.Instance.phaseChanged += this.OnPhaseChange;
+        
+        // Set indexes of hand card slots
+        for (int i = 0; i < hand.Length; i++)
+        {
+            hand[i].index = i;
+        }
     }
 
     // Update is called once per frame
@@ -49,7 +55,7 @@ public class CardArea : MonoBehaviour
         // Play shuffle animation
     }
 
-    private void OnCardsChanged() 
+    private void OnCardsChanged(bool shuffle) 
     {
         // Get new values
         int newDeckCount = deck.cards.Count;
@@ -70,6 +76,11 @@ public class CardArea : MonoBehaviour
             else
                 this.hand[i].SetCard(null);
         }
+
+        if (shuffle)
+            AudioManager.Instance.Shuffle();
+        else
+            AudioManager.Instance.Draw();
     }
 
     // TODO: Finalize these values
